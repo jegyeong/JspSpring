@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+		default-lazy-init="true"
+		>
+		
+		<context:annotation-config />
+		<context:component-scan base-package="kr.or.ddit.designpattern.strategy.example" use-default-filters="false">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		</context:component-scan>
+
+<!-- 	<bean id="riffleGun" class="kr.or.ddit.designpattern.strategy.example.RiffleGun" -->
+<!-- 		scope="prototype" -->
+<!-- 	></bean> -->
+<!-- 	<bean id="biBitan" class="kr.or.ddit.designpattern.strategy.example.BiBitan"  -->
+<!-- 		scope="prototype" -->
+<!-- 	></bean> -->
+	
+<!-- 	<bean id="solidier" class="kr.or.ddit.designpattern.strategy.example.Solidier"  -->
+<!-- 		scope="prototype" -->
+<!-- 	/> -->
+</beans>

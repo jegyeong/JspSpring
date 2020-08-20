@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<util:list id="sampleList" list-class="java.util.LinkedList" scope="prototype">
+		<bean class="java.util.Date" />
+		<value>text value</value>
+	</util:list>
+	<util:set id="sampleSet" set-class="java.util.LinkedHashSet" value-type="java.lang.String">
+		<value>value1</value>
+		<value>value2</value>
+	</util:set>
+	<util:map id="sampleMap" key-type="java.lang.String" value-type="java.util.Date">
+		<entry key="key1">
+			<bean class="java.util.Date" />
+		</entry>
+	</util:map>
+	<util:properties id="sampleProps" location="classpath:kr/or/ddit/example/dbInfo.properties">
+		<prop key="propname">textvalue</prop>
+	</util:properties>
+	<bean id="stringArray" class="kr.or.ddit.example.vo.StringArrayFactoryBean" />
+
+	<bean id="vo2" class="kr.or.ddit.example.vo.CollectionDIVO" 
+		p:list-ref="sampleList"
+		p:set-ref="sampleSet"
+		p:map-ref="sampleMap"
+		p:props-ref="sampleProps"
+		p:array-ref="stringArray"
+	/>
+	<bean id="vo1" class="kr.or.ddit.example.vo.CollectionDIVO">
+		<property name="list">
+			<list>
+				<bean class="java.util.Date" />
+				<value>text value</value>
+			</list>
+		</property>
+		<property name="set">
+			<set>
+				<value>value1</value>
+				<value>value2</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="key1">
+					<bean class="java.util.Date" />
+				</entry>
+			</map>
+		</property>
+		<property name="props">
+			<props>
+				<prop key="propname">textvalue</prop>
+			</props>
+		</property>
+		<property name="array">
+			<array>
+				<value>arrayvalue1</value>
+				<value>arrayvalue2</value>
+			</array>
+		</property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

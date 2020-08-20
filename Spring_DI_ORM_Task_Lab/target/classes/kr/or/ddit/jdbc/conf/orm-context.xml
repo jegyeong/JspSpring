@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	스프링과 mybatis 연동 -->
+<!-- 1. spring-orm 과  mybatis-spring 모듈 의존성 추가 -->
+<!-- 2.  DataSource 등록 : datasource-context.xml -->
+<!-- 3. SqlSessionFactoryBean 등록 -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
+	p:dataSource-ref="dataSource"
+	p:typeAliasesPackage="kr.or.ddit.vo"
+	p:mapperLocations="classpath:kr/or/ddit/jdbc/mapper/*.xml"
+/>
+<!-- 	4. SqlSessionTemplate 등록 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" 
+		c:sqlSessionFactory-ref="sqlSessionFactory"
+	/>
+	
+	<mybatis-spring:scan base-package="kr.or.ddit.jdbc"
+		annotation="org.springframework.stereotype.Repository"
+	/>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+

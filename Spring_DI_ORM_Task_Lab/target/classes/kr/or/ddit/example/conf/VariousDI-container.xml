@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="vo1" class="kr.or.ddit.example.vo.VariousDIVO" 
+		c:number="34"
+		c:booldata="false"
+		c:ch="A"
+		c:text="data"
+		c:file="classpath:log4j2.xml"
+		c:type="kr.or.ddit.example.service.SampleServiceImpl"
+	/>
+	<bean id="vo2" class="kr.or.ddit.example.vo.VariousDIVO"  scope="prototype"
+		p:number="34"
+		p:booldata="false"
+		p:ch="A"
+		p:text="data"
+		p:file="classpath:log4j2.xml"
+		p:type="kr.or.ddit.example.service.SampleServiceImpl"
+	/>
+</beans>
+
+
+
+

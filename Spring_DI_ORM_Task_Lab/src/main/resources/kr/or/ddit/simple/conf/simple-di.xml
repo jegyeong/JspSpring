@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+<!-- 	bar = new Bar(); -->
+<!-- 	baz = new Baz(); -->
+<!-- 	new Foo(bar, baz) -->
+	<bean id="bar" class="kr.or.ddit.simple.Bar"></bean>
+	<bean id="baz" class="kr.or.ddit.simple.Baz"></bean>
+	<bean id="foo1" class="kr.or.ddit.simple.Foo">
+		<constructor-arg name="bar" ref="bar" />
+		<constructor-arg name="baz" ref="baz" />
+	</bean>
+	<bean id="foo2" class="kr.or.ddit.simple.Foo">
+		<constructor-arg name="bar" ref="bar" />
+		<constructor-arg name="baz" ref="baz" />
+	</bean>
+</beans>

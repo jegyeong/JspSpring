@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+		default-lazy-init="true"
+	>
+
+<!-- 스키마 종류 : beans, c, p -->
+
+<!-- 	Spring container(Bean container, DI container, IoC container) 사용 단계 -->
+<!-- 	1. spring-context 모듈 의존성 추가(pom.xml) -->
+<!-- 	2. DI 컨테이너 내에 관리 대상이 되는 빈 등록(bean). -->
+<!-- 	3. 등록된 빈들간의 의존관계 형성(의존성 주입) -->
+<!-- 	   1) constructor injection -->
+<!-- 	   		constructor-arg name="" ref="" -->
+<!-- 				c namespace	 -->
+<!-- 	   2) setter injection -->
+<!-- 	   		property name="" ref="" -->
+<!-- 				p namespace -->
+<!-- 	4. 어플리케이션의 엔트리 포인트 컨테이너 객체 생성(ApplicationContext) : 구현체 결정 -->
+<!-- 	5. container.getBean(type), getBean(name), getBean(name, type) -->
+
+<!-- 	스프링 컨테이너의 빈 관리 특성 -->
+<!-- 	1. 빈, 객체 생성 시점 : 컨테이너가 초기화될때 등록된 모든 빈의 객체를 생성함. -->
+<!-- 			lazy-init 설정으로 생성 시점 지연 가능  - 주입시에 생성됨(객체 생성 순서 제어 가능.). -->
+<!-- 	2. 빈, 객체의 생성 갯수 : 기본적으로 싱글턴의 형태로 빈을 관리함.(주의! 싱글턴의 대상이 클래스가 아님.)	  -->
+<!-- 			scope : singlton(one instance), proptotype(multi instance, lazy-init포함),  -->
+<!-- 					request(web), session(web) -->
+<!-- 	3. 빈 객체의 생성 순서는 기본적으로 등록된 빈의 순서를 따름. -->
+<!-- 			depends-on -->
+<!-- 	4. 컨테이너가 빈을 초기화할때 그 생명주기에 맞춰 호출하는 콜백 메소드가 있음. -->
+
+
+<!-- 	CoC(Convention Over Configuration) -->
+	<bean id="sampleDAO" class="kr.or.ddit.example.dao.SampleDAOImpl" 
+		lazy-init="false"
+		scope="singleton"
+		init-method="init"
+		destroy-method="destroy"
+	/>
+	<bean id="sampleService" class="kr.or.ddit.example.service.SampleServiceImpl" 
+		p:dao-ref="sampleDAO"
+	/>
+	<bean id="sampleController1" class="kr.or.ddit.example.controller.SampleController" 
+		c:service-ref="sampleService" depends-on="sampleController2"
+		lazy-init="false"
+	/>
+	<bean id="sampleController2" class="kr.or.ddit.example.controller.SampleController" 
+		c:service-ref="sampleService" 
+	/>
+</beans>
+
+
+
+
+
+
+
+
+
+
